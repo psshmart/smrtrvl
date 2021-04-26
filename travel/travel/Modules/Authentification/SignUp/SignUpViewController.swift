@@ -10,8 +10,8 @@ import SnapKit
 
 class SignUpViewController: UIViewController {
 
-    var signUpCoordinator: SignUpCoordinator?
-    var presenter: SignUpViewOutput?
+    var signUpCoordinator: SignUpRouter?
+    var presenter: SignUpPresenter?
     var contentView: SignUpView?
     
     override func viewDidLoad() {
@@ -24,14 +24,6 @@ class SignUpViewController: UIViewController {
         addTargets()
     }
     
-    private func addTargets() {
-        contentView?.registerButton.addTarget(self, action: #selector(signUp), for: .touchUpInside)
-    }
-    
-    @objc private func signUp() {
-        presenter?.signUp(email: contentView?.usernameTextField.text ?? "", password: contentView?.passwordTextField.text ?? "", passwordConfirm: contentView?.confirmPasswordTextField.text ?? "")
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         subscribeOnNotification()
@@ -41,6 +33,27 @@ class SignUpViewController: UIViewController {
         super.viewWillDisappear(animated)
         unsubscribeFromNotifications()
     }
+    
+    // MARK: - Registration funcs
+    
+    private func addTargets() {
+        contentView?.registerButton.addTarget(self, action: #selector(signUp), for: .touchUpInside)
+    }
+    
+    @objc private func signUp() {
+        presenter?.signUp(email: contentView?.emailTextField.text ?? "", password: contentView?.passwordTextField.text ?? "", passwordConfirm: contentView?.confirmPasswordTextField.text ?? "", username: contentView?.usernameTextField.text ?? "")
+    }
+    
+    // MARK: - Alerts
+    
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    // MARK: - Funcs for scrollview
     
     @objc private func keyboardWasShown(notification: Notification) {
            let info = notification.userInfo! as NSDictionary

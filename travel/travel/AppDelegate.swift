@@ -15,6 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         UINavigationBar.appearance().tintColor = .white
+        UINavigationBar.appearance().largeTitleTextAttributes =
+            [NSAttributedString.Key.foregroundColor : UIColor.white,
+             NSAttributedString.Key.font : CustomFonts.openSans(size: 36, style: .semibold)]
+        UITabBar.appearance().tintColor = UIColor.white
+        UITabBar.appearance().unselectedItemTintColor = .black
+        UITabBar.appearance().barTintColor = UIColor(red: 135/255, green: 127/255, blue: 158/255, alpha: 1)
         FirebaseApp.configure()
 
         return true

@@ -10,8 +10,9 @@ import SnapKit
 
 class SignInViewController: UIViewController {
 
-    var signInCoordinator: SignInCoordinator?
+    var signInCoordinator: SignInRouter?
     var contentView: SignInView?
+    var presenter: SignInPresenter?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +20,7 @@ class SignInViewController: UIViewController {
         view.addSubview(contentView!)
         self.navigationController?.isNavigationBarHidden = true
         contentView?.signUpButton.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+        addTargets()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -31,6 +33,26 @@ class SignInViewController: UIViewController {
         super.viewWillDisappear(animated)
         unsubscribeFromNotifications()
     }
+    
+    private func addTargets() {
+        contentView?.loginButton.addTarget(self, action: #selector(signIn), for: .touchUpInside)
+    }
+    
+    // MARK: - SignIn
+    @objc private func signIn() {
+        presenter?.signIn(email: contentView?.usernameTextField.text ?? "", password: contentView?.passwordTextField.text ?? "")
+    }
+    
+    // MARK: - Alerts
+    
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    // MARK: - Funcs for scrollview
     
     @objc private func keyboardWasShown(notification: Notification) {
            let info = notification.userInfo! as NSDictionary

@@ -5,20 +5,25 @@
 //  Created by Svetlana Safonova on 25.03.2021.
 //
 
-class SignUpPresenter {
+class SignUpPresenter: SignUpViewOutput {
     
-    private let registrationService = RegistrationService()
-}
-
-extension SignUpPresenter: SignUpViewOutput {
-    func signUp(email: String, password: String, passwordConfirm: String) {
-        registrationService.signUp(email: email, password: password, passwordConfirm: passwordConfirm) { response in
+    var didSignUp: (() -> Void)?
+    let registrationService = RegistrationService()
+    weak var viewController: SignUpViewController?
+    
+    
+    func signUp(email: String, password: String, passwordConfirm: String, username: String) {
+        registrationService.signUp(email: email, password: password, passwordConfirm: passwordConfirm, username: username) { response in
             switch response {
             case .failure(let message):
                 print(message)
+                self.viewController?.showAlert(title: "Failed", message: message)
             case .success:
-                print("zaebis")
+                print("nice")
+                self.viewController?.showAlert(title: "Succeed", message: "You have successfully signed up")
+                self.didSignUp?()
             }
         }
     }
 }
+

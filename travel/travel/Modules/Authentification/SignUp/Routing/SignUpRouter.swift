@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SignUpCoordinator: Coordinator {
+class SignUpRouter: Coordinator {
     
     var navigationController: UINavigationController
 
@@ -19,7 +19,7 @@ class SignUpCoordinator: Coordinator {
         showSignInScene()
     }
 
-    private func showSignInScene() {
+    func showSignInScene() {
         SignUpSceneFactory.makeSignInScene(navigationController: navigationController)
     }
 

@@ -6,5 +6,5 @@
 //
 
 protocol SignUpViewOutput {
-    func signUp(email: String, password: String, passwordConfirm: String)
+    func signUp(email: String, password: String, passwordConfirm: String, username: String) 
 }

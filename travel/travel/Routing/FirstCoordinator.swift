@@ -8,6 +8,8 @@
 import UIKit
 
 class FirstCoordinator: Coordinator {
+    
+    weak var parentCoordinator: AppCoordinator?
 
 
     var navigationController: UINavigationController
@@ -22,7 +24,15 @@ class FirstCoordinator: Coordinator {
 
     private func showSignInScene() {
         let scene = FirstCoordinatorFactory.makeSignInScene()
-        scene.signInCoordinator = SignInCoordinator(navigationController: navigationController)
+        scene.signInCoordinator = SignInRouter(navigationController: navigationController)
+        scene.signInCoordinator?.parentCoordinator = parentCoordinator
+        scene.presenter = SignInPresenter()
+        scene.presenter?.viewController = scene
+        scene.presenter?.didSignIn = { [weak scene] in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                scene?.signInCoordinator?.showMyTripsScene()
+            }
+        }
         navigationController.pushViewController(scene, animated: true)
     }
 }

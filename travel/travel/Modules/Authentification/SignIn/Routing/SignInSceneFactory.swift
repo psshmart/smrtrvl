@@ -12,4 +12,8 @@ struct SignInSceneFactory {
         let viewController = SignUpViewController()
         return viewController
     }
+    static func makeMyTripsScene() -> MainTabBarController {
+        let viewController = MainTabBarController()
+        return viewController
+    }
 }

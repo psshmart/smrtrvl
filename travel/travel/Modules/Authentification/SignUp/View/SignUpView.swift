@@ -36,6 +36,13 @@ class SignUpView: ScrollableView {
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
+    
+    let emailTextField: UITextField = {
+        let textField = CustomTextField()
+        textField.textAlignment = .center
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
+    }()
 
     let passwordTextField: UITextField = {
         let textField = CustomTextField()
@@ -70,6 +77,16 @@ class SignUpView: ScrollableView {
 
         return label
     }()
+    
+    let emailLabel: UILabel = {
+        let label = UILabel()
+        label.font = CustomFonts.openSans(size: 23, style: .regular)
+        label.text = "email"
+        label.textColor = UIColor(red: 242/255, green: 240/255, blue: 255/255, alpha: 1)
+        label.translatesAutoresizingMaskIntoConstraints = false
+
+        return label
+    }()
 
     let passwordLabel: UILabel = {
         let label = UILabel()
@@ -94,6 +111,8 @@ class SignUpView: ScrollableView {
     private func setupView() {
 
         scrollView.addSubview(signUpLabel)
+        scrollView.addSubview(emailLabel)
+        scrollView.addSubview(emailTextField)
         scrollView.addSubview(usernameLabel)
         scrollView.addSubview(usernameTextField)
         scrollView.addSubview(passwordLabel)
@@ -124,12 +143,26 @@ class SignUpView: ScrollableView {
             make.top.equalTo(usernameLabel.snp.bottom).offset(15)
 
         }
-
-        passwordLabel.snp.makeConstraints { make in
+        
+        emailLabel.snp.makeConstraints { make in
             make.centerX.equalTo(usernameTextField)
             make.width.greaterThanOrEqualTo(50)
             make.height.equalTo(30)
             make.top.equalTo(usernameTextField.snp.bottom).offset(25)
+        }
+        
+        emailTextField.snp.makeConstraints { make in
+            make.centerX.equalTo(emailLabel)
+            make.width.greaterThanOrEqualTo(265)
+            make.height.equalTo(40)
+            make.top.equalTo(emailLabel.snp.bottom).offset(15)
+        }
+
+        passwordLabel.snp.makeConstraints { make in
+            make.centerX.equalTo(emailTextField)
+            make.width.greaterThanOrEqualTo(50)
+            make.height.equalTo(30)
+            make.top.equalTo(emailTextField.snp.bottom).offset(25)
         }
 
         passwordTextField.snp.makeConstraints {make in
