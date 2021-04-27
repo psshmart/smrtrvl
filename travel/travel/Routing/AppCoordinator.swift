@@ -49,12 +49,12 @@ class AppCoordinator: Coordinator {
     }
 
     func start() {
-        let user = Auth.auth()
-        do {
-            try user.signOut()
-        } catch let error as NSError {
-            print(error)
-        }
+//        let user = Auth.auth()
+//        do {
+//            try user.signOut()
+//        } catch let error as NSError {
+//            print(error)
+//        }
         checkAuthorization()
     }
 
