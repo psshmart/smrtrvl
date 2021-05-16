@@ -21,12 +21,18 @@ class UserInfoView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    lazy var tripsSegmentedControl: TripsSegmentedControl = {
+        let control = TripsSegmentedControl(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 45), buttonTitles: ["My Trips", "Liked Trips"])
+        control.translatesAutoresizingMaskIntoConstraints = false
+        return control
+    }()
+    
     let usernameLabel: UILabel = {
         let label = UILabel()
         label.font = CustomFonts.openSans(size: 36, style: .bold)
         label.text = "Username"
         label.textAlignment = .center
-        label.textColor = UIColor(red: 242/255, green: 240/255, blue: 255/255, alpha: 1)
+        label.textColor = CustomColors.usernameGray
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -56,46 +62,11 @@ class UserInfoView: UIView {
         
         return view
     }()
-    
-    
-    let tripsButton: UIButton = {
-        let button = TripsButton()
-        button.setTitle("My trips", for: .normal)
-        button.backgroundColor = .clear
-        button.layer.compositingFilter = .some("multiplyBlendMode")
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        
-        return button
-    }()
-    
-    let likedTripsButton: UIButton = {
-        let button = TripsButton()
-        button.setTitle("Liked trips", for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        return button
-    }()
-    
-    let stackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.alignment = .fill
-        stackView.distribution = .fillEqually
-        stackView.axis = .horizontal
-        stackView.spacing = 50
-        stackView.backgroundColor = .clear
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        return stackView
-    }()
+
     
     private func setupViews() {
         
-        
-        stackView.addArrangedSubview(tripsButton)
-        stackView.addArrangedSubview(likedTripsButton)
-        
-        addSubview(stackView)
+        addSubview(tripsSegmentedControl)
         addSubview(usernameLabel)
         addSubview(settingsButton)
         addSubview(userImage)
@@ -103,7 +74,7 @@ class UserInfoView: UIView {
         
         usernameLabel.snp.makeConstraints { make in
             make.width.greaterThanOrEqualTo(185)
-            make.top.equalToSuperview().offset(self.bounds.height * 0.07)
+            make.top.equalToSuperview().offset(self.bounds.height * 0.14)
             make.centerX.equalToSuperview()
         }
         
@@ -123,12 +94,15 @@ class UserInfoView: UIView {
             make.centerX.equalTo(usernameLabel)
         }
         
-        stackView.snp.makeConstraints { make in
+        tripsSegmentedControl.snp.makeConstraints { make in
+            make.centerX.equalTo(userImage)
             make.width.equalTo(self.bounds.width * 0.367 * 2 + self.bounds.width * 0.145)
             make.height.equalTo(45)
-            make.centerX.equalTo(userImage)
             make.top.equalTo(userImage.snp.bottom).offset(30)
             make.bottom.equalToSuperview().offset(-14)
         }
+        
     }
+    
+    
 }

@@ -10,7 +10,7 @@ import UIKit
 class MyTripsViewController: UITableViewController, TripsViewInput {
     
     private var backView = BackgroundView()
-    var coordinator: MyTripsCoordinator?
+    var coordinator: MyTripsRouter?
     var presenter: MyTripsPresenter?
     private var doesExist: Bool?
     private let tripsCellView = MyTripsCell()
@@ -27,7 +27,7 @@ class MyTripsViewController: UITableViewController, TripsViewInput {
             doesExist = true
             self.tableView.reloadData()
         }
-
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTripButtonAction))
         self.presenter?.viewDidLoad()
         
     }
@@ -45,7 +45,9 @@ class MyTripsViewController: UITableViewController, TripsViewInput {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Create new trip"
         navigationController?.hidesBarsOnSwipe = true
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        
+        
     }
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -83,6 +85,10 @@ class MyTripsViewController: UITableViewController, TripsViewInput {
         height = tripsCellView.backView.bounds.height + 10
         return height
         
+    }
+    
+    @objc func addTripButtonAction() {
+        coordinator?.getCreateTripViewController()
     }
     
 }

@@ -24,13 +24,13 @@ class FirstCoordinator: Coordinator {
 
     private func showSignInScene() {
         let scene = FirstCoordinatorFactory.makeSignInScene()
-        scene.signInCoordinator = SignInRouter(navigationController: navigationController)
-        scene.signInCoordinator?.parentCoordinator = parentCoordinator
+        scene.signInRouter = SignInRouter(navigationController: navigationController)
+        scene.signInRouter?.parentCoordinator = parentCoordinator
         scene.presenter = SignInPresenter()
         scene.presenter?.viewController = scene
         scene.presenter?.didSignIn = { [weak scene] in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                scene?.signInCoordinator?.showMyTripsScene()
+                scene?.signInRouter?.showMyTripsScene()
             }
         }
         navigationController.pushViewController(scene, animated: true)

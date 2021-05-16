@@ -7,6 +7,8 @@
 
 import Firebase
 import FirebaseAuth
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 class RegistrationService {
     

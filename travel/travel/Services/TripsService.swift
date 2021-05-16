@@ -5,8 +5,9 @@
 //  Created by Svetlana Safonova on 29.03.2021.
 //
 
-import Firebase
 import FirebaseAuth
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 class TripsService {
     

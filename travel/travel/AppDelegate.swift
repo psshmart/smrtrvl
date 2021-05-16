@@ -15,6 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         UINavigationBar.appearance().tintColor = .white
+        UINavigationBar.appearance().titleTextAttributes =
+            [NSAttributedString.Key.foregroundColor : UIColor.white,
+             NSAttributedString.Key.font : CustomFonts.openSans(size: 18, style: .regular)]
         UINavigationBar.appearance().largeTitleTextAttributes =
             [NSAttributedString.Key.foregroundColor : UIColor.white,
              NSAttributedString.Key.font : CustomFonts.openSans(size: 36, style: .semibold)]

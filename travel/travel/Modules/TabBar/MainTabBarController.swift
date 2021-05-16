@@ -30,7 +30,7 @@ class MainTabBarController: UITabBarController {
     }
     
     private func setMyTripsCoordinator() {
-        myTripsController.coordinator = MyTripsCoordinator.init(navigationController: UINavigationController(rootViewController: myTripsController))
+        myTripsController.coordinator = MyTripsRouter.init(navigationController: UINavigationController(rootViewController: myTripsController))
         myTripsController.presenter = MyTripsPresenter()
         myTripsController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "house.fill"), selectedImage: UIImage(systemName: "house.fill"))
         myTripsController.presenter?.doesTripExist()

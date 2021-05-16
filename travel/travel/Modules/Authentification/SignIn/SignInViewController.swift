@@ -10,7 +10,7 @@ import SnapKit
 
 class SignInViewController: UIViewController {
 
-    var signInCoordinator: SignInRouter?
+    var signInRouter: SignInRouter?
     var contentView: SignInView?
     var presenter: SignInPresenter?
 
@@ -79,7 +79,7 @@ class SignInViewController: UIViewController {
         }
 
     @objc private func didTapButton() {
-        signInCoordinator?.getSignUpViewController()
+        signInRouter?.getSignUpViewController()
     }
 }
 
