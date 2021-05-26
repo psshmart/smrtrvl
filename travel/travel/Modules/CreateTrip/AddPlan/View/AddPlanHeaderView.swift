@@ -7,10 +7,11 @@
 
 import UIKit
 
-class AddPlanHeaderView: UIView {
+class AddPlanHeaderView: UITableViewHeaderFooterView {
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
         setupView()
     }
     

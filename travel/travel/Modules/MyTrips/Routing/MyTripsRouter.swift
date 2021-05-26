@@ -22,9 +22,21 @@ class MyTripsRouter: Coordinator {
         showCreateTripScene()
     }
     
+    func getTripController(trip: Trip) {
+        showTripScene(trip: trip)
+    }
+    
     private func showCreateTripScene() {
         let scene = MyTripsSceneFactory.makeCreateTripScene()
         scene.coordinator = CreateTripRouter.init(navigationController: navigationController)
+        scene.presenter = CreateTripMainPresenter(view: scene)
+        navigationController.pushViewController(scene, animated: true)
+    }
+    
+    private func showTripScene(trip: Trip) {
+        let scene = MyTripsSceneFactory.makeTripScrene()
+        scene.presenter = TripPresenter(trip: trip, view: scene)
+        scene.router = TripRouter(navigationController: navigationController)
         navigationController.pushViewController(scene, animated: true)
     }
     

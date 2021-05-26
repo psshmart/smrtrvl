@@ -9,8 +9,6 @@ import UIKit
 
 class DatePickerCell: UITableViewCell {
 
-    
-
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
@@ -30,9 +28,9 @@ class DatePickerCell: UITableViewCell {
         return label
     }()
     
-    private var datePicker: UIDatePicker = {
+    var datePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
-        datePicker.tintColor = CustomColors.whiteTitle
+        datePicker.tintColor = CustomColors.yellowLable
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .automatic
         datePicker.translatesAutoresizingMaskIntoConstraints = false
@@ -43,6 +41,7 @@ class DatePickerCell: UITableViewCell {
     
     private func setupView() {
         backgroundColor = .clear
+        selectionStyle = .none
         contentView.isUserInteractionEnabled = false
         addSubview(dateLabel)
         addSubview(datePicker)

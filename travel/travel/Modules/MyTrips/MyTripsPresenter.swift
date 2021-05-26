@@ -7,42 +7,42 @@
 
 class MyTripsPresenter: TripsViewOutput {
     
-//    weak var view: TripsViewInput?
-    
-    var exist: (() -> Void)?
-    
-    var doesntExist: (() -> Void)?
+    weak var view: TripsViewInput?
     
     var tripsService = TripsService()
     
-//    init(view: MyTripsPresenter) {
-//        self.view = view
-//    }
+    private var trips: [Trip] = []
     
-    func doesTripExist() {
-        tripsService.doesTripsExist() { result in
-            switch result {
-            case .failure(let message):
-                print(message)
-                self.doesntExist?()
-            case .success:
-                self.exist?()
-                
-            }
-            
-            
-        }
-        
+    init(view: TripsViewInput) {
+        self.view = view
     }
     
+    
     func viewDidLoad() {
-//        self.getTrips()
-//        self.view.models = models
-//        self.view.tablleview.reloaddata
+        self.getTrips()
+    }
+    
+    private func didLoadTrips() {
+        self.view?.tripsData = trips
+        self.view?.tripTableView.reloadData()
     }
     
     private func getTrips() {
-        print("get trips!!!")
+        tripsService.getUserTrips { [weak self] result in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let trips):
+                self?.trips = trips
+                self?.didLoadTrips()
+            }
+        }
     }
+    
+    func deleteTrip(trip: Trip) {
+        tripsService.deleteTrip(trip: trip)
+        self.getTrips()
+    }
+    
     
 }

@@ -50,6 +50,7 @@ class CreateNewPlanCell: UITableViewCell {
     
     private func setupView() {
         contentView.isUserInteractionEnabled = false
+        selectionStyle = .none
         backgroundColor = .clear
         addButton.addTarget(self, action: #selector(changeColorByPress), for: .touchDown)
         addButton.addTarget(self, action: #selector(changeColorAfterPress), for: .touchUpInside)

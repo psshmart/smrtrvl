@@ -5,4 +5,15 @@
 //  Created by Svetlana Safonova on 16.05.2021.
 //
 
-import Foundation
+import UIKit
+
+struct AddPlanSceneFactory {
+    static func createLocationScene() -> LocationCountryController {
+        let viewController = LocationCountryController()
+        return viewController
+    }
+    
+    static func makeCreateTripsScene(navigationController: UINavigationController) {
+        navigationController.popViewController(animated: true)
+    }
+}

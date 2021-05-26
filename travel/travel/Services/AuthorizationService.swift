@@ -26,4 +26,10 @@ class AuthorizationService {
             return
         }
     }
+    
+    func getUsername() -> String {
+        let currentUser = Auth.auth().currentUser
+        guard let username = currentUser?.displayName else { return "" }
+        return username
+    }
 }

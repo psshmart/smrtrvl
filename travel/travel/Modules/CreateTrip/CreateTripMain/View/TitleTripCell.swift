@@ -19,7 +19,7 @@ class TitleTripCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private var isPrivate: Bool = true
+    var isPrivate: Bool = false
     
     let titleLabel: UILabel = {
         let label = UILabel()
@@ -53,7 +53,7 @@ class TitleTripCell: UITableViewCell {
     
     private func setupView() {
         backgroundColor = .clear
-        
+        selectionStyle = .none
         privacyButton.addTarget(self, action: #selector(changePrivacy), for: .touchUpInside)
         contentView.isUserInteractionEnabled = false
         addSubview(titleLabel)

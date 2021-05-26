@@ -19,7 +19,7 @@ class PlanCell: UITableViewCell {
     
     var planName: UILabel = {
         let label = UILabel()
-        label.font = CustomFonts.openSans(size: 30, style: .semibold)
+        label.font = CustomFonts.openSans(size: 17, style: .semibold)
         label.textColor = CustomColors.whiteTitle
         label.textAlignment = .center
         
@@ -30,7 +30,6 @@ class PlanCell: UITableViewCell {
     
     var backView: CustomBackView = {
         let view = CustomBackView()
-        view.layer.backgroundColor = CustomColors.selectedViewPurple.cgColor
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
@@ -38,7 +37,7 @@ class PlanCell: UITableViewCell {
     
     var dateLabel: UILabel = {
         let label = UILabel()
-        label.font = CustomFonts.openSans(size: 30, style: .regular)
+        label.font = CustomFonts.openSans(size: 15, style: .regular)
         label.textColor = CustomColors.nonSelectedWhite
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -46,6 +45,7 @@ class PlanCell: UITableViewCell {
     }()
     
     private func setupView() {
+        backgroundColor = .clear
         addSubview(backView)
         addSubview(planName)
         addSubview(dateLabel)
@@ -66,8 +66,8 @@ class PlanCell: UITableViewCell {
         
         dateLabel.snp.makeConstraints { make in
             make.centerY.equalTo(backView)
-            make.trailing.equalToSuperview().offset(50)
-            make.width.lessThanOrEqualTo(100)
+            make.trailing.equalToSuperview().offset(-50)
+            make.width.lessThanOrEqualTo(150)
         }
         
     }

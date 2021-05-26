@@ -12,4 +12,9 @@ struct MyTripsSceneFactory {
         let viewController = CreateTripMainController()
         return viewController
     }
+    
+    static func makeTripScrene() -> TripController {
+        let viewController = TripController()
+        return viewController
+    }
 }

@@ -5,4 +5,15 @@
 //  Created by Svetlana Safonova on 26.05.2021.
 //
 
-import Foundation
+import UIKit
+
+struct TripSceneFactory {
+    static func showMyTripsScene(navigationController: UINavigationController) {
+        navigationController.popViewController(animated: true)
+    }
+    
+    static func showPlanScene() -> PlanController {
+        let viewController = PlanController(style: .grouped)
+        return viewController
+    }
+}

@@ -11,13 +11,14 @@ class PlanNameCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupView()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    var tripTitle: UILabel = {
+    var planTitle: UILabel = {
         let label = UILabel()
         label.font = CustomFonts.openSans(size: 36, style: .semibold)
         label.textColor = CustomColors.yellowLable
@@ -30,7 +31,6 @@ class PlanNameCell: UITableViewCell {
     
     var backView: CustomBackView = {
         let view = CustomBackView()
-        view.layer.backgroundColor = CustomColors.selectedViewPurple.cgColor
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
@@ -38,7 +38,7 @@ class PlanNameCell: UITableViewCell {
     
     var locationTitle: UILabel = {
         let label = UILabel()
-        label.font = CustomFonts.openSans(size: 28, style: .regular)
+        label.font = CustomFonts.openSans(size: 23, style: .regular)
         label.textColor = CustomColors.whiteTitle
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -47,11 +47,12 @@ class PlanNameCell: UITableViewCell {
     }()
     
     private func setupView() {
+        backgroundColor = .clear
         addSubview(backView)
-        addSubview(tripTitle)
+        addSubview(planTitle)
         backView.addSubview(locationTitle)
         
-        tripTitle.snp.makeConstraints { make in
+        planTitle.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalToSuperview().offset(30)
             make.height.equalTo(46)
@@ -61,14 +62,15 @@ class PlanNameCell: UITableViewCell {
         backView.snp.makeConstraints { make in
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
-            make.height.equalTo(50)
-            make.top.equalTo(tripTitle.snp.bottom).offset(25)
+            make.top.equalTo(planTitle.snp.bottom).offset(25)
+            make.bottom.equalToSuperview().offset(-5)
         }
         
         locationTitle.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalToSuperview().offset(5)
-            make.bottom.equalToSuperview().offset(-5)
+            make.top.equalToSuperview().offset(10)
+            make.height.equalTo(50)
+            make.bottom.equalToSuperview().offset(-10)
         }
 
     }

@@ -19,4 +19,15 @@ class UserScreenRouter: Coordinator {
     func start() {
         
     }
+    
+    func getTripController(trip: Trip) {
+        showTripScene(trip: trip)
+    }
+    
+    private func showTripScene(trip: Trip) {
+        let scene = MyTripsSceneFactory.makeTripScrene()
+        scene.presenter = TripPresenter(trip: trip, view: scene)
+        scene.router = TripRouter(navigationController: navigationController)
+        navigationController.pushViewController(scene, animated: true)
+    }
 }

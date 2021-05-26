@@ -7,13 +7,13 @@
 
 import UIKit
 
-class LocationCountryPresenter: LocationViewOutput {
+class LocationCountryPresenter: LocationCountryViewOutput {
 
-    weak var view: LocationViewInput?
+    weak var view: LocationCountryViewInput?
     
     private var locationService: LocationService = LocationService()
     
-    init(view: LocationViewInput, locationService: LocationService) {
+    init(view: LocationCountryViewInput, locationService: LocationService) {
         self.view = view
         self.locationService = locationService
     }

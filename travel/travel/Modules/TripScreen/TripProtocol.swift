@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+protocol TripViewOutput {
+    func getPlansCount() -> Int
+    func getPlan(index: Int) -> Plan
+    func viewDidLoad() 
+}
+
+protocol TripViewInput: AnyObject {
+    var trip: Trip? { get set }
+}

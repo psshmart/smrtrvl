@@ -7,11 +7,11 @@
 
 import UIKit
 
-protocol LocationViewInput: AnyObject {
+protocol LocationCountryViewInput: AnyObject {
     var data: [Country] { get set }
     var countriesTableView: UITableView { get set }
 }
 
-protocol LocationViewOutput {
+protocol LocationCountryViewOutput {
     func viewDidLoad()
 }

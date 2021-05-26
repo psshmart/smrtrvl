@@ -73,7 +73,7 @@ class SignInView: ScrollableView {
     let usernameLabel: UILabel = {
         let label = UILabel()
         label.font = CustomFonts.openSans(size: 25, style: .regular)
-        label.text = "username"
+        label.text = "email"
         label.textColor = UIColor(red: 242/255, green: 240/255, blue: 255/255, alpha: 1)
         label.translatesAutoresizingMaskIntoConstraints = false
 

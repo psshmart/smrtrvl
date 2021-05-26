@@ -29,6 +29,34 @@ class LocationCell: UITableViewCell {
         return label
     }()
     
+    let titleTextField: CustomTextField = {
+        let textField = CustomTextField()
+        textField.textAlignment = .left
+        textField.backgroundColor = .clear
+        textField.setPlaceholder(text: "Enter here", screen: "createTrip")
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
+    }()
+    
+    var startDatePickerView: CustomDatePicker = {
+        let view = CustomDatePicker(width: 135)
+        view.dateLabel.text = "Starts"
+        return view
+    }()
+    
+    var endsDatePickerView: CustomDatePicker = {
+        let view = CustomDatePicker(width: 135)
+        view.dateLabel.text = "Ends"
+        return view
+    }()
+    
+    var budgetView: LableAndTextFieldView = {
+        let view = LableAndTextFieldView()
+        view.titleLabel.text = "Budget"
+        view.valueTextField.setMaxSymblos(count: 15)
+        return view
+    }()
+    
     let addButton: UIButton = {
         let button = CustomAddButton()
         button.isUserInteractionEnabled = true
@@ -68,6 +96,10 @@ class LocationCell: UITableViewCell {
         addButton.addSubview(view)
         addSubview(titleLabel)
         addSubview(addButton)
+        addSubview(titleTextField)
+        addSubview(startDatePickerView)
+        addSubview(endsDatePickerView)
+        addSubview(budgetView)
         
         titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(28)
@@ -75,18 +107,47 @@ class LocationCell: UITableViewCell {
             make.width.lessThanOrEqualTo(300)
             make.height.equalTo(45)
         }
+        
+        titleTextField.snp.makeConstraints { make in
+            make.centerY.equalTo(titleLabel)
+            make.leading.equalTo(titleLabel.snp.trailing).offset(20)
+            make.width.lessThanOrEqualTo(170)
+        }
+        
+        startDatePickerView.snp.makeConstraints { make in
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.height.equalTo(50)
+            make.top.equalTo(titleLabel.snp.bottom).offset(10)
+        }
+        
+        endsDatePickerView.snp.makeConstraints { make in
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.height.equalTo(50)
+            make.top.equalTo(startDatePickerView.snp.bottom).offset(10)
+        }
+        
+        budgetView.snp.makeConstraints { make in
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.height.equalTo(50)
+            make.top.equalTo(endsDatePickerView.snp.bottom).offset(10)
+        }
         view.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.trailing.equalToSuperview().offset(-20)
         }
         
         addButton.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(30)
+            make.top.equalTo(budgetView.snp.bottom).offset(30)
             make.leading.equalToSuperview().offset(30)
             make.width.equalTo(340)
             make.height.equalTo(45)
             make.bottom.equalToSuperview().offset(-20)
         }
+        
+        titleLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
     }
 
 }

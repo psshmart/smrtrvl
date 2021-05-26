@@ -9,15 +9,52 @@ import UIKit
 
 class TripNameCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupView()
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-
+    
+    
+    var tripTitle: UILabel = {
+        let label = UILabel()
+        label.font = CustomFonts.openSans(size: 36, style: .semibold)
+        label.textColor = CustomColors.whiteTitle
+        label.textAlignment = .center
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }()
+    
+    var backView: CustomBackView = {
+        let view = CustomBackView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
+    private func setupView() {
+        backgroundColor = .clear
+        addSubview(backView)
+        addSubview(tripTitle)
+        
+        backView.snp.makeConstraints { make in
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.height.equalTo(170)
+            make.top.equalToSuperview().offset(10)
+            make.bottom.equalToSuperview().offset(-5)
+        }
+        
+        tripTitle.snp.makeConstraints { make in
+            make.centerX.equalTo(backView)
+            make.centerY.equalTo(backView)
+            make.height.equalTo(40)
+        }
+    }
+    
 }

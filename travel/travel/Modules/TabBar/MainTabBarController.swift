@@ -31,20 +31,19 @@ class MainTabBarController: UITabBarController {
     
     private func setMyTripsCoordinator() {
         myTripsController.coordinator = MyTripsRouter.init(navigationController: UINavigationController(rootViewController: myTripsController))
-        myTripsController.presenter = MyTripsPresenter()
+        myTripsController.presenter = MyTripsPresenter(view: myTripsController)
         myTripsController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "house.fill"), selectedImage: UIImage(systemName: "house.fill"))
-        myTripsController.presenter?.doesTripExist()
     }
     
     private func setUsersTripsCoordinator() {
         usersTripsController.coordinator = UsersTripsCoordinator.init(navigationController: UINavigationController(rootViewController: usersTripsController))
-        usersTripsController.presenter = UsersTripsPresenter()
+        usersTripsController.presenter = UsersTripsPresenter(view: usersTripsController)
         usersTripsController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "newspaper"), selectedImage: UIImage(systemName: "newspaper"))
     }
     
     private func setUserScreenCoordinator() {
         userScreenController.coordinator = UserScreenRouter.init(navigationController: UINavigationController(rootViewController: userScreenController))
-        userScreenController.presenter = UserScreenPresenter()
+        userScreenController.presenter = UserScreenPresenter(view: userScreenController)
         userScreenController.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "person.crop.circle"), selectedImage: UIImage(systemName: "person.crop.circle"))
     }
 }

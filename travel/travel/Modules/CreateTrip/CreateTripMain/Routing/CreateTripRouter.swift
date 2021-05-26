@@ -19,15 +19,24 @@ class CreateTripRouter: Coordinator {
         
     }
     
-    func getAddPlanController() {
-        showAddPlanScene()
+    func getMyTripsController() {
+        showMyTripsScene()
     }
     
-    private func showAddPlanScene() {
+    func getAddPlanController(trip: Trip, delegate: PlanSaved) {
+        showAddPlanScene(trip: trip, delegate: delegate)
+    }
+    
+    private func showAddPlanScene(trip: Trip, delegate: PlanSaved) {
         let scene = CreateTripSceneFactory.createAddPlanScene()
         scene.router = AddPlanRouter(navigationController: navigationController)
+        scene.presenter = AddPlanPresenter(trip: trip, view: scene)
+        scene.delegate = delegate
         navigationController.pushViewController(scene, animated: true)
-        
+    }
+    
+    private func showMyTripsScene() {
+        CreateTripSceneFactory.showMyTrispScene(navigationController: navigationController)
     }
     
     

@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 class UsersTripsCell: UITableViewCell {
-
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
@@ -19,9 +19,11 @@ class UsersTripsCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    var isLiked: Bool = false
+    
     var backView: UIView = {
         let view = UIView(frame: CGRect(x: 27, y: 0, width: 364, height: 120))
-        view.layer.backgroundColor = UIColor(red: 0.831, green: 0.761, blue: 0.875, alpha: 1).cgColor
+        view.layer.backgroundColor = CustomColors.nonSelectedViewPurple.cgColor
         view.layer.cornerRadius = 15
         view.layer.masksToBounds = false
         return view
@@ -33,6 +35,14 @@ class UsersTripsCell: UITableViewCell {
         view.backgroundColor = .black
         
         return view
+    }()
+    
+    let likeButton: UIButton = {
+        let button = UIButton(frame: CGRect(x: 30, y: 30, width: 30, height: 30))
+        button.backgroundColor = .clear
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.tintColor = CustomColors.yellowLable
+        return button
     }()
     
     let usernameLabel: UILabel = {
@@ -49,7 +59,7 @@ class UsersTripsCell: UITableViewCell {
     let tripNameLabel: UILabel = {
         let label = UILabel()
         label.font = CustomFonts.openSans(size: 34, style: .regular)
-        label.textColor = .white
+        label.textColor = CustomColors.whiteTitle
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Name"
@@ -61,12 +71,19 @@ class UsersTripsCell: UITableViewCell {
         backView.addSubview(profileImageView)
         backView.addSubview(usernameLabel)
         backView.addSubview(tripNameLabel)
+        backView.addSubview(likeButton)
+        
         
         backView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.width.equalTo(364)
             make.height.equalTo(120)
             make.top.equalToSuperview().offset(5)
+        }
+        
+        likeButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-10)
         }
         
         profileImageView.snp.makeConstraints { make in
@@ -91,5 +108,5 @@ class UsersTripsCell: UITableViewCell {
         }
         
     }
-
+    
 }

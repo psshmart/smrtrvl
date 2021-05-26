@@ -33,12 +33,14 @@ class BudgetCell: UITableViewCell {
         textField.textAlignment = .center
         textField.backgroundColor = .clear
         textField.setPlaceholder(text: "Enter here", screen: "createTrip")
+        textField.keyboardType = .decimalPad
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
 
     private func setupView() {
         contentView.isUserInteractionEnabled = true
+        selectionStyle = .none
         backgroundColor = .clear
         addSubview(budgetLabel)
         addSubview(budgetTextField)

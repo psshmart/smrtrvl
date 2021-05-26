@@ -18,7 +18,7 @@ class LableAndTextFieldView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    let budgetLabel: UILabel = {
+    let titleLabel: UILabel = {
         let label = UILabel()
         label.font = CustomFonts.openSans(size: 24, style: .regular)
         label.textColor = CustomColors.whiteTitle
@@ -28,7 +28,7 @@ class LableAndTextFieldView: UIView {
         return label
     }()
     
-    let budgetTextField: UITextField = {
+    let valueTextField: CustomTextField = {
         let textField = CustomTextField()
         textField.textAlignment = .right
         textField.backgroundColor = .clear
@@ -40,23 +40,24 @@ class LableAndTextFieldView: UIView {
     private func setupView() {
 
         backgroundColor = .clear
-        addSubview(budgetLabel)
-        addSubview(budgetTextField)
+        addSubview(titleLabel)
+        addSubview(valueTextField)
         
-        budgetLabel.snp.makeConstraints { make in
+        titleLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.leading.equalToSuperview().offset(30)
             make.trailing.lessThanOrEqualToSuperview().offset(-50)
         }
         
-        budgetTextField.snp.makeConstraints { make in
+        valueTextField.snp.makeConstraints { make in
             make.width.equalTo(100)
             make.centerY.equalToSuperview()
-            make.leading.greaterThanOrEqualTo(budgetLabel.snp.trailing).offset(47)
+            make.leading.greaterThanOrEqualTo(titleLabel.snp.trailing).offset(47)
             make.trailing.equalToSuperview().offset(-35)
             make.height.equalTo(37)
         }
         
-        budgetLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        titleLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
     }
+    
 }

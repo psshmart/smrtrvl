@@ -5,10 +5,13 @@
 //  Created by Svetlana Safonova on 29.03.2021.
 //
 
+import UIKit
+
 protocol TripsViewOutput {
-    func doesTripExist()
-    func viewDidLoad()
+    func deleteTrip(trip: Trip)
 }
 
-protocol TripsViewInput {
+protocol TripsViewInput: AnyObject {
+    var tripsData: [Trip] { get set }
+    var tripTableView: UITableView { get set }
 }

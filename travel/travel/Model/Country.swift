@@ -7,7 +7,11 @@
 
 import UIKit
 
+struct Countries: Codable {
+    var data: [Country]
+}
+
 struct Country: Codable {
-    var name: String
+    var country: String
     var cities: [String]
 }

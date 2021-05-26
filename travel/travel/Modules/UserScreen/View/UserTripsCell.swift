@@ -20,7 +20,7 @@ class UserTripsCell: UITableViewCell {
     
     var backView: UIView = {
         let view = UIView(frame: CGRect(x: 27, y: 0, width: 364, height: 120))
-        view.layer.backgroundColor = UIColor(red: 0.831, green: 0.761, blue: 0.875, alpha: 1).cgColor
+        view.layer.backgroundColor = CustomColors.nonSelectedViewPurple.cgColor
         view.layer.cornerRadius = 15
         view.layer.masksToBounds = false
         return view
@@ -40,7 +40,7 @@ class UserTripsCell: UITableViewCell {
         let label = UILabel()
         label.font = CustomFonts.openSans(size: 16, style: .regular)
         label.text = "date"
-        label.textColor = UIColor(red: 53/255, green: 55/255, blue: 65/255, alpha: 1)
+        label.textColor = CustomColors.nonSelectedWhite
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         

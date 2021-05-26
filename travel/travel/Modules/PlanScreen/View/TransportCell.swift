@@ -20,7 +20,6 @@ class TransportCell: UITableViewCell {
     
     var backView: CustomBackView = {
         let view = CustomBackView()
-        view.layer.backgroundColor = CustomColors.nonSelectedViewPurple.cgColor
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
@@ -28,9 +27,9 @@ class TransportCell: UITableViewCell {
     
     var typeLabel: UILabel = {
         let label = UILabel()
-        label.font = CustomFonts.openSans(size: 25, style: .regular)
+        label.font = CustomFonts.openSans(size: 18, style: .regular)
         label.textColor = CustomColors.whiteTitle
-        label.textAlignment = .center
+        label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -38,9 +37,9 @@ class TransportCell: UITableViewCell {
     
     var startLabel: UILabel = {
         let label = UILabel()
-        label.font = CustomFonts.openSans(size: 25, style: .regular)
+        label.font = CustomFonts.openSans(size: 15, style: .regular)
         label.textColor = CustomColors.whiteTitle
-        label.textAlignment = .center
+        label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -48,9 +47,9 @@ class TransportCell: UITableViewCell {
     
     var endLabel: UILabel = {
         let label = UILabel()
-        label.font = CustomFonts.openSans(size: 25, style: .regular)
+        label.font = CustomFonts.openSans(size: 15, style: .regular)
         label.textColor = CustomColors.whiteTitle
-        label.textAlignment = .center
+        label.textAlignment = .right
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -58,9 +57,9 @@ class TransportCell: UITableViewCell {
     
     var startLocationLabel: UILabel = {
         let label = UILabel()
-        label.font = CustomFonts.openSans(size: 25, style: .regular)
+        label.font = CustomFonts.openSans(size: 17, style: .regular)
         label.textColor = CustomColors.whiteTitle
-        label.textAlignment = .center
+        label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -68,9 +67,9 @@ class TransportCell: UITableViewCell {
     
     var endLocationLabel: UILabel = {
         let label = UILabel()
-        label.font = CustomFonts.openSans(size: 25, style: .regular)
+        label.font = CustomFonts.openSans(size: 17, style: .regular)
         label.textColor = CustomColors.whiteTitle
-        label.textAlignment = .center
+        label.textAlignment = .right
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -78,9 +77,9 @@ class TransportCell: UITableViewCell {
     
     var budgetLabel: UILabel = {
         let label = UILabel()
-        label.font = CustomFonts.openSans(size: 25, style: .regular)
+        label.font = CustomFonts.openSans(size: 17, style: .regular)
         label.textColor = CustomColors.whiteTitle
-        label.textAlignment = .center
+        label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -110,6 +109,7 @@ class TransportCell: UITableViewCell {
     
     
     private func setupView() {
+        backgroundColor = .clear
         stackViewDate.addArrangedSubview(startLabel)
         stackViewDate.addArrangedSubview(endLabel)
         
@@ -133,20 +133,20 @@ class TransportCell: UITableViewCell {
         
         typeLabel.snp.makeConstraints { make in
             make.top.equalTo(backView.snp.top).offset(20)
-            make.width.lessThanOrEqualTo(40)
+            make.width.lessThanOrEqualTo(140)
             make.centerX.equalToSuperview()
         }
         
         stackViewDate.snp.makeConstraints { make in
             make.top.equalTo(typeLabel.snp.bottom).offset(15)
-            make.width.equalTo(220)
+            make.width.equalTo(300)
             make.height.equalTo(40)
             make.centerX.equalToSuperview()
         }
         
         stackViewLocation.snp.makeConstraints { make in
             make.top.equalTo(stackViewDate.snp.bottom).offset(15)
-            make.width.equalTo(220)
+            make.width.equalTo(300)
             make.height.equalTo(40)
             make.centerX.equalToSuperview()
         }

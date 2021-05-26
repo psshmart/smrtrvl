@@ -7,7 +7,8 @@
 
 import UIKit
 import FirebaseAuth
-
+import FirebaseFirestore
+import AuthenticationServices
 
 class AppCoordinator: Coordinator {
 
@@ -40,7 +41,9 @@ class AppCoordinator: Coordinator {
     }
     
     func checkAuthorization() {
-        if Auth.auth().currentUser != nil {
+        let user = Auth.auth().currentUser
+    
+        if user != nil {
             setupTabBarAsRoot()
         } else {
             setupStarterCoordinator()

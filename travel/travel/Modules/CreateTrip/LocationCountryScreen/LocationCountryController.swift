@@ -7,17 +7,28 @@
 
 import UIKit
 
-class LocationCountryController: UITableViewController, LocationViewInput {
+class LocationCountryController: UITableViewController, LocationCountryViewInput {
     
     var data: [Country] = []
     var router: LocationRouter?
-    var presenter: LocationViewOutput?
+    var presenter: LocationCountryViewOutput?
     lazy var countriesTableView: UITableView = self.tableView
+    var gotFrom: String?
+    var index: Int = 0
+    var delegate: LocationDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.viewDidLoad()
         setupTableView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = false
     }
 
     private func setupTableView() {
@@ -30,6 +41,11 @@ class LocationCountryController: UITableViewController, LocationViewInput {
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let source = gotFrom else { return }
+        router?.getCitiesController(data: data[indexPath.row], source: source, index: index, delegate: delegate!)
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

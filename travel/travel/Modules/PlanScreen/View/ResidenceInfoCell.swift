@@ -20,7 +20,6 @@ class ResidenceInfoCell: UITableViewCell {
     
     var backView: CustomBackView = {
         let view = CustomBackView()
-        view.layer.backgroundColor = CustomColors.nonSelectedViewPurple.cgColor
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
@@ -28,7 +27,7 @@ class ResidenceInfoCell: UITableViewCell {
     
     var nameLabel: UILabel = {
         let label = UILabel()
-        label.font = CustomFonts.openSans(size: 25, style: .regular)
+        label.font = CustomFonts.openSans(size: 18, style: .regular)
         label.textColor = CustomColors.whiteTitle
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -38,7 +37,7 @@ class ResidenceInfoCell: UITableViewCell {
     
     var startLabel: UILabel = {
         let label = UILabel()
-        label.font = CustomFonts.openSans(size: 25, style: .regular)
+        label.font = CustomFonts.openSans(size: 15, style: .regular)
         label.textColor = CustomColors.whiteTitle
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -48,7 +47,7 @@ class ResidenceInfoCell: UITableViewCell {
     
     var endLabel: UILabel = {
         let label = UILabel()
-        label.font = CustomFonts.openSans(size: 25, style: .regular)
+        label.font = CustomFonts.openSans(size: 15, style: .regular)
         label.textColor = CustomColors.whiteTitle
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -58,7 +57,7 @@ class ResidenceInfoCell: UITableViewCell {
     
     var budgetLabel: UILabel = {
         let label = UILabel()
-        label.font = CustomFonts.openSans(size: 25, style: .regular)
+        label.font = CustomFonts.openSans(size: 17, style: .regular)
         label.textColor = CustomColors.whiteTitle
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -80,6 +79,7 @@ class ResidenceInfoCell: UITableViewCell {
     
     
     private func setupView() {
+        backgroundColor = .clear
         stackViewDate.addArrangedSubview(startLabel)
         stackViewDate.addArrangedSubview(endLabel)
     
@@ -106,7 +106,7 @@ class ResidenceInfoCell: UITableViewCell {
         
         stackViewDate.snp.makeConstraints { make in
             make.top.equalTo(nameLabel.snp.bottom).offset(15)
-            make.width.equalTo(220)
+            make.width.equalTo(300)
             make.height.equalTo(40)
             make.centerX.equalToSuperview()
         }
@@ -114,7 +114,7 @@ class ResidenceInfoCell: UITableViewCell {
         budgetLabel.snp.makeConstraints { make in
             make.top.equalTo(stackViewDate.snp.bottom).offset(15)
             make.centerX.equalToSuperview()
-            make.width.lessThanOrEqualTo(100)
+            make.width.lessThanOrEqualTo(150)
         }
         
         

@@ -27,17 +27,19 @@ class RegistrationService {
                     }
                     return
                 }
-                guard let uid = result?.user.uid else {
-                    return completion(.failure("sosi"))
-                }
+                
+                let user = Auth.auth().currentUser?.createProfileChangeRequest()
+                user?.displayName = trimmedUsername
+                user?.commitChanges(completion: { error in
+                    completion(.failure("Cannot save data"))
+                })
+                
+                guard let uid = Auth.auth().currentUser?.uid else { return }
                 let db = Firestore.firestore()
-                db.collection("users").document(uid).setData([
-                    "username" : trimmedUsername
-                ]) { error in
-                    if error != nil {
-                        return completion(.failure("Can't save the data"))
-                    }
-                }
+                let docRef = db.collection("users").document(uid).setData(
+                    ["username": trimmedUsername]
+                )
+                
                 completion(.success)
                 return
             }

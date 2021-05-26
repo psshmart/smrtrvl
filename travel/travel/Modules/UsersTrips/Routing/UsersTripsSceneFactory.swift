@@ -5,4 +5,11 @@
 //  Created by Svetlana Safonova on 27.05.2021.
 //
 
-import Foundation
+import UIKit
+
+struct UserTripsSceneFactory {
+    static func makeTripScrene() -> TripController {
+        let viewController = TripController()
+        return viewController
+    }
+}
