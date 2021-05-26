@@ -66,7 +66,7 @@ class LocationPickerView: UIView, UIPickerViewDelegate, UIPickerViewDataSource{
         
         typeLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(25)
-            make.leading.equalToSuperview().offset(30)
+            make.leading.equalToSuperview().offset(40)
             make.trailing.lessThanOrEqualToSuperview().offset(-50)
         }
         

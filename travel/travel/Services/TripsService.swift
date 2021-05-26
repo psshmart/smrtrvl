@@ -149,7 +149,7 @@ class TripsService {
                     likedtrips.append(liked)
                 }
                 
-                trips.sort {
+                likedtrips.sort {
                     $0.startDate! < $1.startDate!
                 }
                 completion(.success(likedtrips))

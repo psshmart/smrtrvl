@@ -54,6 +54,7 @@ class MyTripsCell: UITableViewCell {
     
     private func setupView() {
         backgroundColor = .clear
+        selectionStyle = .none
         addSubview(backView)
         backView.addSubview(nameLabel)
         backView.addSubview(dateLabel)

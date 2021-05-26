@@ -48,6 +48,7 @@ class UserTripsCell: UITableViewCell {
     }()
     
     private func setupView() {
+        selectionStyle = .none
         contentView.addSubview(backView)
         backView.addSubview(tripNameLabel)
         backView.addSubview(dateLabel)

@@ -32,7 +32,7 @@ class NoUsersTripsCell: UITableViewCell {
     
     private func setupView() {
         contentView.addSubview(nameLabel)
-        
+        selectionStyle = .none
         nameLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview()

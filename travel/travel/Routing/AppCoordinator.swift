@@ -22,6 +22,7 @@ class AppCoordinator: Coordinator {
         self.window = window
         self.navigationController = navigationController
         setupStarterCoordinator()
+        NotificationCenter.default.addObserver(self, selector: #selector(didLogOut), name: .didLogOut, object: nil)
     }
 
     func setupWindow() {
@@ -42,7 +43,7 @@ class AppCoordinator: Coordinator {
     
     func checkAuthorization() {
         let user = Auth.auth().currentUser
-    
+        
         if user != nil {
             setupTabBarAsRoot()
         } else {
@@ -62,6 +63,8 @@ class AppCoordinator: Coordinator {
     }
 
 
-
+    @objc private func didLogOut() {
+        start()
+    }
 
 }

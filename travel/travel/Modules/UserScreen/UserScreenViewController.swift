@@ -37,6 +37,7 @@ class UserScreenViewController: UIViewController, UITableViewDataSource, UITable
         guard let userView = userInfoView else { return }
         userView.tripsSegmentedControl.delegate = self
         userView.usernameLabel.text = presenter?.getUsername()
+        userView.settingsButton.addTarget(self, action: #selector(getSettingsScreen), for: .touchUpInside)
         view.addSubview(userView)
         safeArea = view.layoutMarginsGuide
         setupTableView()
@@ -187,6 +188,10 @@ class UserScreenViewController: UIViewController, UITableViewDataSource, UITable
         let configImageN = UIImage(systemName: "heart", withConfiguration: configN)
         sender.setImage(configImageN, for: .normal)
         
+    }
+    
+    @objc private func getSettingsScreen(sender: UIButton) {
+        coordinator?.getSettingsController()
     }
     
 }

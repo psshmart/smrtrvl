@@ -110,6 +110,7 @@ class TransportCell: UITableViewCell {
     
     private func setupView() {
         backgroundColor = .clear
+        selectionStyle = .none
         stackViewDate.addArrangedSubview(startLabel)
         stackViewDate.addArrangedSubview(endLabel)
         

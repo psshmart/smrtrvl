@@ -72,7 +72,7 @@ class UsersTripsCell: UITableViewCell {
         backView.addSubview(usernameLabel)
         backView.addSubview(tripNameLabel)
         backView.addSubview(likeButton)
-        
+        selectionStyle = .none
         
         backView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()

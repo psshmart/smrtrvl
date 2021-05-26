@@ -47,6 +47,7 @@ class PlanNameCell: UITableViewCell {
     }()
     
     private func setupView() {
+        selectionStyle = .none
         backgroundColor = .clear
         addSubview(backView)
         addSubview(planTitle)

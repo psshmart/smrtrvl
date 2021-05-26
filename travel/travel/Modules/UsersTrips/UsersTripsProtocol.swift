@@ -16,6 +16,7 @@ protocol UsersTripsViewOutput {
 
 protocol UsersTripsViewInput: AnyObject {
     var trips: [Trip] { get set }
+    var thisTrips: [Trip] { get set }
     var usersTableView: UITableView { get set }
     var isLiked: Bool? { get set }
 }

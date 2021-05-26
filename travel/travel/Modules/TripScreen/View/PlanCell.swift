@@ -46,6 +46,7 @@ class PlanCell: UITableViewCell {
     
     private func setupView() {
         backgroundColor = .clear
+        selectionStyle = .none
         addSubview(backView)
         addSubview(planName)
         addSubview(dateLabel)

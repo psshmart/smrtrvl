@@ -36,6 +36,7 @@ class UsersTripsPresenter: UsersTripsViewOutput {
                         print(error)
                     case .success(let newTrips):
                         self.view?.trips.append(contentsOf: newTrips)
+                        self.view?.thisTrips.append(contentsOf: newTrips)
                         self.view?.usersTableView.reloadData()
                     }
                 }

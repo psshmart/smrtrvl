@@ -32,4 +32,15 @@ class AuthorizationService {
         guard let username = currentUser?.displayName else { return "" }
         return username
     }
+    
+    func logOut(completion: @escaping (Error?) -> Void) {
+        let user = Auth.auth()
+        do {
+            try user.signOut()
+            completion(nil)
+        } catch let error as NSError {
+            print(error)
+            completion(error)
+        }
+    }
 }

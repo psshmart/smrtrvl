@@ -54,7 +54,7 @@ class CustomDatePicker: UIView {
         
         dateLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.leading.equalToSuperview().offset(30)
+            make.leading.equalToSuperview().offset(40)
             make.trailing.lessThanOrEqualToSuperview().offset(-50)
         }
         

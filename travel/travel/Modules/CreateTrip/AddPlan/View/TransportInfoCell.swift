@@ -79,7 +79,7 @@ class TransportInfoCell: UITableViewCell {
             make.top.equalToSuperview().offset(10)
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview()
-            make.width.equalTo(365)
+            make.width.equalTo(370)
             make.height.equalTo(400)
             make.bottom.equalToSuperview().offset(-10)
         }

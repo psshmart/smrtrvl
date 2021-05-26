@@ -31,7 +31,10 @@ class RegistrationService {
                 let user = Auth.auth().currentUser?.createProfileChangeRequest()
                 user?.displayName = trimmedUsername
                 user?.commitChanges(completion: { error in
-                    completion(.failure("Cannot save data"))
+                    if let error = error {
+                        completion(.failure("Cannot save data"))
+                    }
+                    
                 })
                 
                 guard let uid = Auth.auth().currentUser?.uid else { return }

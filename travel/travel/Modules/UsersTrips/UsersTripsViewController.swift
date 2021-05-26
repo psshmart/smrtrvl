@@ -17,6 +17,7 @@ class UsersTripsViewController: UITableViewController, UISearchBarDelegate, User
     private var usersTripsCellView = UsersTripsCell()
     var tripsService: TripsService = TripsService()
     var trips: [Trip] = []
+    var thisTrips: [Trip] = []
     lazy var usersTableView: UITableView = self.tableView
     var isLiked: Bool?
     
@@ -29,6 +30,7 @@ class UsersTripsViewController: UITableViewController, UISearchBarDelegate, User
         tableView.separatorStyle = .none
         searchBar.delegate = self
         navigationItem.titleView = searchBar
+        setGesture()
         
     }
     
@@ -38,6 +40,7 @@ class UsersTripsViewController: UITableViewController, UISearchBarDelegate, User
         navigationItem.title = "Trips of other users"
         navigationController?.hidesBarsOnSwipe = true
         presenter?.viewDidLoad()
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -46,14 +49,43 @@ class UsersTripsViewController: UITableViewController, UISearchBarDelegate, User
     
     // MARK: - Table view data source
     
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if let text = searchBar.text, (text.isEmpty == false ) {
+            
+            let searchedTrips = trips.filter( { $0.title.contains(searchText)})
+            if searchedTrips.count > 0 {
+                trips = searchedTrips
+                tableView.reloadData()
+            } else {
+                trips = thisTrips
+                tableView.reloadData()
+            }
+            
+        } else {
+            trips = thisTrips
+            tableView.reloadData()
+        }
+       
+       
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return trips.count
+        if trips.isEmpty { return 1 }
+        else  {
+            return trips.count
+            
+        }
+        
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

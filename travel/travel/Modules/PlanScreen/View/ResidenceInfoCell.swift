@@ -80,6 +80,7 @@ class ResidenceInfoCell: UITableViewCell {
     
     private func setupView() {
         backgroundColor = .clear
+        selectionStyle = .none
         stackViewDate.addArrangedSubview(startLabel)
         stackViewDate.addArrangedSubview(endLabel)
     
@@ -93,14 +94,14 @@ class ResidenceInfoCell: UITableViewCell {
         backView.snp.makeConstraints { make in
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
-            make.height.equalTo(230)
+            make.height.equalTo(180)
             make.top.equalToSuperview().offset(10)
             make.bottom.equalToSuperview().offset(-5)
         }
         
         nameLabel.snp.makeConstraints { make in
-            make.top.equalTo(backView.snp.top).offset(20)
-            make.width.lessThanOrEqualTo(40)
+            make.top.equalTo(backView.snp.top).offset(30)
+            make.width.lessThanOrEqualTo(100)
             make.centerX.equalToSuperview()
         }
         

@@ -12,4 +12,9 @@ struct UserScreenSceneFactory {
         let viewController = TripController()
         return viewController
     }
+    
+    static func makeSettingsScene() -> SettingsController {
+        let viewController = SettingsController()
+        return viewController
+    }
 }

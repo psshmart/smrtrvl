@@ -30,4 +30,15 @@ class UserScreenRouter: Coordinator {
         scene.router = TripRouter(navigationController: navigationController)
         navigationController.pushViewController(scene, animated: true)
     }
+    
+    func getSettingsController() {
+        showSettingsScene()
+    }
+    
+    private func showSettingsScene() {
+        let scene = UserScreenSceneFactory.makeSettingsScene()
+        scene.router = SettingsRouter(navigationController: navigationController)
+        scene.presentor = SettingsPresenter()
+        navigationController.pushViewController(scene, animated: true)
+    }
 }

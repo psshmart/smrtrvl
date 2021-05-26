@@ -39,6 +39,7 @@ class TripNameCell: UITableViewCell {
     
     private func setupView() {
         backgroundColor = .clear
+        selectionStyle = .none
         addSubview(backView)
         addSubview(tripTitle)
         
